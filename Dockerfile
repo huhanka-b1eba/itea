@@ -1,5 +1,5 @@
 # Многоэтапная сборка для оптимизации размера образа
-FROM node:18-alpine AS frontend-builder
+FROM node:20-alpine AS frontend-builder
 
 # Установка рабочей директории
 WORKDIR /app
@@ -7,8 +7,8 @@ WORKDIR /app
 # Копирование package.json и package-lock.json
 COPY package*.json ./
 
-# Установка зависимостей
-RUN npm ci --only=production
+# Установка зависимостей (включая dev-зависимости для сборки)
+RUN npm ci
 
 # Копирование исходного кода
 COPY . .
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Сборка бэкенда
-FROM node:18-alpine AS backend-builder
+FROM node:20-alpine AS backend-builder
 
 WORKDIR /app/backend
 
@@ -28,7 +28,7 @@ COPY backend/package*.json ./
 RUN npm ci --only=production
 
 # Финальный образ
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 

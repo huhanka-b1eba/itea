@@ -2,12 +2,20 @@ import express from "express";
 import cors from "cors";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Раздача статических файлов фронтенда
+app.use(express.static(path.join(__dirname, "../public")));
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -39,4 +47,10 @@ app.post("/send", async (req, res) => {
     }
 });
 
-app.listen(3001, () => console.log("✅ Server started on port 3001"));
+// Маршрут для SPA (все остальные запросы)
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+});
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`✅ Server started on port ${PORT}`));
