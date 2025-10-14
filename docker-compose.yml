@@ -1,8 +1,9 @@
 services:
   itea-app:
     build: .
-    ports:
-      - "3001:3001"
+    # Порт 3001 не нужно экспонировать наружу, так как nginx проксирует запросы
+    # ports:
+    #   - "3001:3001"
     environment:
       - NODE_ENV=production
       - EMAIL_USER=${EMAIL_USER}

@@ -11,7 +11,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-app.use(cors());
+// Настройка CORS для продакшена
+const corsOptions = {
+    origin: process.env.NODE_ENV === 'production' 
+        ? ['http://185.139.69.170', 'http://localhost:3001'] 
+        : true,
+    credentials: true
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Раздача статических файлов фронтенда
@@ -27,6 +34,14 @@ const transporter = nodemailer.createTransport({
 
 app.post("/send", async (req, res) => {
     const { name, email, message } = req.body;
+    
+    console.log(`[${new Date().toISOString()}] 📧 Получена заявка:`, {
+        name,
+        email,
+        messageLength: message?.length || 0,
+        userAgent: req.get('User-Agent'),
+        origin: req.get('Origin')
+    });
 
     try {
         await transporter.sendMail({
@@ -40,10 +55,11 @@ app.post("/send", async (req, res) => {
             `,
         });
 
+        console.log(`[${new Date().toISOString()}] ✅ Письмо успешно отправлено для ${name}`);
         res.status(200).json({ success: true });
     } catch (error) {
-        console.error("Ошибка при отправке письма:", error);
-        res.status(500).json({ success: false });
+        console.error(`[${new Date().toISOString()}] ❌ Ошибка при отправке письма для ${name}:`, error.message);
+        res.status(500).json({ success: false, error: error.message });
     }
 });
 
