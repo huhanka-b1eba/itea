@@ -15,7 +15,6 @@ const app = express();
 const corsOptions = {
     origin: process.env.NODE_ENV === 'production' 
         ? [
-            'http://185.139.69.170', 
             'http://iteadev.ru',
             'https://iteadev.ru',
             'http://localhost:3001'
