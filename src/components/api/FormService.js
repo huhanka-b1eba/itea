@@ -1,6 +1,6 @@
 class FormService {
     static send = async (name, email, message) => {
-        const apiUrl = import.meta.env.URL_API || "http://localhost:3001";
+        const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:3001";
         const timestamp = new Date().toISOString();
         
         console.log(`[${timestamp}] 📧 FormService: Отправка заявки`, {
