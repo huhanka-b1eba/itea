@@ -14,12 +14,22 @@ const app = express();
 // Настройка CORS для продакшена
 const corsOptions = {
     origin: process.env.NODE_ENV === 'production' 
-        ? ['http://185.139.69.170', 'http://localhost:3001'] 
+        ? [
+            'http://185.139.69.170', 
+            'http://iteadev.ru',
+            'https://iteadev.ru',
+            'http://localhost:3001'
+        ] 
         : true,
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 };
 app.use(cors(corsOptions));
 app.use(express.json());
+
+// Обработка preflight запросов
+app.options('*', cors(corsOptions));
 
 // Раздача статических файлов фронтенда
 app.use(express.static(path.join(__dirname, "../public")));
