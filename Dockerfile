@@ -40,7 +40,6 @@ COPY backend/ ./backend/
 COPY --from=frontend-builder /app/dist ./public
 
 # Установка переменных окружения
-ENV NODE_ENV=production
 ENV PORT=3001
 
 # Открытие порта
