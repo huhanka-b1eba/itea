@@ -11,15 +11,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-// Настройка CORS для продакшена
+// Настройка CORS
 const corsOptions = {
-    origin: process.env.NODE_ENV === 'production' 
-        ? [
-            'http://iteadev.ru',
-            'https://iteadev.ru',
-            'http://localhost:3001'
-        ] 
-        : true,
+    origin: [
+        'http://iteadev.ru',
+        'https://iteadev.ru',
+        'http://localhost:3001'
+    ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']

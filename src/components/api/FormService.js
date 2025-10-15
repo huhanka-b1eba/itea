@@ -1,9 +1,7 @@
 class FormService {
     static send = async (name, email, message) => {
         // Определяем URL API в зависимости от окружения
-        const apiUrl = import.meta.env.PROD 
-            ? "http://iteadev.ru" 
-            : "http://localhost:3001";
+        const apiUrl = "http://iteadev.ru" 
         const timestamp = new Date().toISOString();
         
         console.log(`[${timestamp}] 📧 FormService: Отправка заявки`, {
