@@ -26,7 +26,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Обработка preflight запросов
-app.options('/*', cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // Раздача статических файлов фронтенда
 app.use(express.static(path.join(__dirname, "../public")));
