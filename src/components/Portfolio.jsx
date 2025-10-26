@@ -1,6 +1,10 @@
 import React from 'react';
 import iStoreImg from '../assets/img/portfolio/istore.png';
 import RomsemImg from '../assets/img/portfolio/romsem.png';
+import YouristImg from '../assets/img/portfolio/ooo_yurist.png';
+import SmartGardenImg from '../assets/img/portfolio/smart_garden.png';
+import AlternativaImg from '../assets/img/portfolio/alternativa.png'
+import AkiatImg from '../assets/img/portfolio/akiat.png'
 import reviewsImg from "../assets/img/reviews.svg";
 
 const Portfolio = () => {
@@ -9,17 +13,46 @@ const Portfolio = () => {
             id: 1,
             title: 'ISTORE',
             img: iStoreImg,
-            desc: 'Интернет-магазин по продаже техники Apple.',
-            stack: 'React, Tailwind, Fast Api, Docker',
+            desc: 'Современный интернет-магазин техники Apple с удобным каталогом, корзиной и оформлением заказов.',
+            stack: 'React, Tailwind, FastAPI, Docker',
         },
         {
             id: 2,
+            title: 'ООО Мой Юрист',
+            img: YouristImg,
+            desc: 'Онлайн-платформа для публикации юридических материалов и взаимодействия с клиентами.',
+            stack: 'HTML , CSS, JS, SPRING',
+        },
+        {
+            id: 3,
+            title: 'ООО Умное Орошение Рус',
+            img: SmartGardenImg,
+            desc: 'Информационный сайт-визитка компании, занимающейся системами автоматического полива.',
+            stack: 'React, Tailwind, FastAPI',
+        },
+        {
+            id: 4,
             title: 'ROMSEM',
             img: RomsemImg,
-            desc: 'Интернет-магазин по продаже техники Apple.',
-            stack: 'React, Tailwind, Fast Api, Docker',
+            desc: 'Интернет-магазин кафе с каталогом блюд, системой заказов и отзывов.',
+            stack: 'React, SPRING',
+        },
+        {
+            id: 5,
+            title: 'ООО Юридический Центр Альтернатива',
+            img: AlternativaImg,
+            desc: 'Корпоративный сайт юридической компании, специализирующейся на списании долгов и правовой защите клиентов.',
+            stack: 'HTML, CSS, Tailwind, JS, PHP',
+        },
+        {
+            id: 6,
+            title: 'Татар Бу — Akiat',
+            img: AkiatImg,
+            desc: 'Интерактивный сервис, создающий персонализированные сказки для детей на татарском языке.',
+            stack: 'React, Tailwind, FastAPI',
         },
     ];
+
 
     return (
         <section id="portfolio" className="mt-[80px] sm:mt-[120px] relative">
@@ -41,7 +74,7 @@ const Portfolio = () => {
 
                         <div>
                             {projects.map((project) => (
-                                <div key={project.id} className="h-[400px]">
+                                <div key={project.id} className="h-[400px] max-w-[668px]">
                                     <img
                                         className="rounded-[30px] shadow-[0_0_40px_1px_rgba(255,255,255,0.4)]"
                                         src={project.img}

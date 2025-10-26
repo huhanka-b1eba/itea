@@ -1,52 +1,33 @@
 import React from 'react';
 import reviewsImg from '../assets/img/reviews.svg';
-import person1 from '../assets/img/reviewPersons/review-1.jpg';
-import person2 from '../assets/img/reviewPersons/review-2.jpg';
-import person3 from '../assets/img/reviewPersons/review-3.jpg';
-import person4 from '../assets/img/reviewPersons/review-4.jpg';
+import person1 from '../assets/img/reviewPersons/review-1.png';
+import person2 from '../assets/img/reviewPersons/review-2.png';
+import person3 from '../assets/img/reviewPersons/review-3.png';
 import star from '../assets/img/star.svg';
 import arrowImg from '../assets/img/arrow-bounce.svg';
 
 const reviewsData = [
     {
         id: 1,
-        name: 'Ахмед Аль Асри',
+        name: 'ООО "Умное Орошение Рус"',
         img: person1,
-        text: 'Ребята классные, всегда отвечали на мои вопросы, сделали мне семестровку за три дня. Качество хорошее, оценю на 21/25, надеюсь на дальнейшее сотрудничество.',
+        text: 'Выражаю огромную благодарность\n' +
+            'за проделанную работу! Исполнитель — настоящий профессионал. ' +
+            'Всё сделано четко, оперативно, учтены все нюансы. Сайт работает' +
+            ' прекрасно, результат превзошел ожидания. Очень приятно было иметь с вами дело!.',
         rating: 5,
     },
     {
         id: 2,
-        name: 'Айгиза Айнурович',
-        img: person3,
-        text: 'Работа выполнена качественно и в срок! Команда действительно знает, что делает. Всем советую ITea Team.',
+        name: 'ООО "МОЙ ЮРИСТ"',
+        img: person2,
+        text: 'Выражаю благодарность команде за слаженную работу и персональный подход!',
         rating: 5,
     },
     {
         id: 3,
-        name: 'Лейла Аскерова',
+        name: 'ООО Юридический Центр Альтернатива',
         img: person3,
-        text: 'Очень приятное взаимодействие — всё чётко, быстро и без лишних слов. Сделали сайт лучше, чем я представляла.',
-        rating: 5,
-    },
-    {
-        id: 4,
-        name: 'Дамир Каримов',
-        img: person4,
-        text: 'Сотрудничаем не первый раз, и как всегда — результат 🔥. Спасибо команде за внимание к деталям!',
-        rating: 4,
-    },
-    {
-        id: 5,
-        name: 'Мария Соколова',
-        img: person1,
-        text: 'Помогли с Telegram-ботом для бизнеса. Работает стабильно, поддержка всегда на связи. Отличная команда!',
-        rating: 5,
-    },
-    {
-        id: 6,
-        name: 'Иван Петров',
-        img: person2,
         text: 'Проект выполнили в срок, всё по ТЗ. Команда адекватная и на связи 24/7. Буду обращаться снова!',
         rating: 5,
     },
@@ -101,14 +82,19 @@ const Reviews = () => {
                     ))}
                 </div>
 
-                <div className="text-center uppercase text-[20px] sm:text-[22px] md:text-[24px] mt-[50px] md:mt-[66px] cursor-pointer w-fit mx-auto duration-300 hover:opacity-75">
-                    <span>Смотреть больше</span>
-                    <img
-                        className="mt-[10px] md:mt-[15px] w-[28px] md:w-[32px] h-[28px] md:h-[32px] animate-bounce mx-auto"
-                        src={arrowImg}
-                        alt="arrow"
-                    />
-                </div>
+                {reviewsData.length > 6 ?
+                    <div className="text-center uppercase text-[20px] sm:text-[22px] md:text-[24px] mt-[50px] md:mt-[66px] cursor-pointer w-fit mx-auto duration-300 hover:opacity-75">
+                        <span>Смотреть больше</span>
+                        <img
+                            className="mt-[10px] md:mt-[15px] w-[28px] md:w-[32px] h-[28px] md:h-[32px] animate-bounce mx-auto"
+                            src={arrowImg}
+                            alt="arrow"
+                        />
+                    </div>
+                    :
+                    <div></div>
+                }
+
             </div>
         </section>
     );
