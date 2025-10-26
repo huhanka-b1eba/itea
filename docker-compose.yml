@@ -1,0 +1,26 @@
+services:
+  itea-app:
+    build: .
+    # Порт 3001 не нужно экспонировать наружу, так как nginx проксирует запросы
+    # ports:
+    #   - "3001:3001"
+    environment:
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
+      - EMAIL_TO=${EMAIL_TO}
+    env_file:
+      - .env
+    restart: unless-stopped
+    
+  # Опционально: Nginx для reverse proxy
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - itea-app
+    restart: unless-stopped
